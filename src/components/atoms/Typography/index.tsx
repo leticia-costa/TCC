@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, StyleProp, TextStyle } from "react-native";
 import { styles } from "./styles";
+import { ColorProp } from "../../../utils/colors";
 
 interface TypographyProps {
   style?: StyleProp<TextStyle>;

@@ -3,7 +3,10 @@ import { View, TextInput } from "react-native";
 import Input from "../../atoms/Input";
 import Typography from "../../atoms/Typography";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faHeartCirclePlus, faStethoscope } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHeartCirclePlus,
+  faStethoscope,
+} from "@fortawesome/free-solid-svg-icons";
 import colors from "../../../utils/colors";
 import Button from "../../atoms/Button";
 import { styles } from "./styles";
@@ -32,6 +35,7 @@ const BloodPressureInput = () => {
 
       <View style={styles.inputContainer}>
         <Input
+          style={styles.input}
           placeholder="Ex: 12"
           type="numeric"
           value={systolic}
@@ -43,6 +47,7 @@ const BloodPressureInput = () => {
           /{" "}
         </Typography>
         <Input
+          style={styles.input}
           ref={diastolicRef}
           placeholder="Ex: 8"
           type="numeric"

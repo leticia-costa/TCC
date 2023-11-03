@@ -5,6 +5,7 @@ export type propNavigationStack = {
     Login: {
         name?: string
     }
+    Reminders: undefined
 }
 
 export type propStack = NativeStackNavigationProp<propNavigationStack>

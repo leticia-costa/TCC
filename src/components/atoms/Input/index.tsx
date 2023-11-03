@@ -14,7 +14,7 @@ interface InputProps {
 
 const Input: React.FC<InputProps> = ({ placeholder, value, onChangeText, style, type, onSubmitEditing, ref }) => {
   return (
-    <View style={styles.inputContainer}>
+    <View style={[styles.inputContainer, style]}>
       <TextInput
         ref={ref}
         returnKeyType="done"

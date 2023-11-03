@@ -6,49 +6,71 @@ import {
   faCircleInfo,
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
-import Card from "../../molecules/Card";
+import Card, { CardProps } from "../../molecules/Card";
 import { styles } from "./styles";
+import { useNavigation } from "@react-navigation/native";
+import { propStack } from "../../../routes/Stack/Models";
 
 const CardsHome: React.FC = () => {
-  const cardOptions = [
+  const navigation = useNavigation<propStack>();
+
+  const cardOptions: CardProps[] = [
     {
       icon: faBell,
       label: "Lembretes",
       theme: "dark",
       fullWidth: false,
+      onPress: () => navigation.navigate("Reminders"),
     },
     {
       icon: faCapsules,
       label: "Medicação",
       theme: "dark",
       fullWidth: false,
+      onPress: () => navigation.navigate("Login", { name: "a" }),
     },
   ];
-  const cardfullWidthOptions = [
+  const cardfullWidthOptions: CardProps[] = [
     {
       icon: faCircleInfo,
       label: "Recomendações",
-      theme: "light",
+      theme: "medium",
       fullWidth: true,
+      onPress: () => navigation.navigate("Login", { name: "a" }),
     },
     {
       icon: faClock,
       label: "Smart watch",
-      theme: "medium",
+      theme: "disabled",
       fullWidth: true,
+      disabled: true,
     },
   ];
   return (
     <>
       <View style={styles.container}>
         {cardOptions.map((option) => (
-          <Card icon={option.icon} label={option.label} theme={option.theme} />
+          <Card
+            icon={option.icon}
+            label={option.label}
+            theme={option.theme}
+            onPress={option.onPress}
+            fullWidth={option.fullWidth}
+            disabled={option.disabled}
+          />
         ))}
       </View>
 
-      {cardOptions.map((option) => (
+      {cardfullWidthOptions.map((option) => (
         <View style={styles.container}>
-          <Card icon={option.icon} label={option.label} theme={option.theme} fullWidth/>
+          <Card
+            icon={option.icon}
+            label={option.label}
+            theme={option.theme}
+            onPress={option.onPress}
+            disabled={option.disabled}
+            fullWidth={option.fullWidth}
+          />
         </View>
       ))}
     </>

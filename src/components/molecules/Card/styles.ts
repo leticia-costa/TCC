@@ -26,8 +26,13 @@ export const styles = StyleSheet.create({
       color: colors.white,
     },
     medium: {
-      backgroundColor: colors.light,
-      color: colors.black,
+      backgroundColor: colors.purple,
+      color: colors.white,
+    },
+    disabled: {
+      backgroundColor: colors.lightGray,
+      color: colors.gray,
+      shadowOpacity:0,
     },
     fullWidth: {
       width: "100%",

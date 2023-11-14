@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   },
   buttonText: {
     color: colors.white,
-    fontSize: 18,
+    fontSize: 16,
   },
   icon: {
     color: colors.white,

@@ -24,7 +24,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <TouchableOpacity style={[styles.button, style]} {...otherProps}>
       <Typography style={styles.buttonText}>{label}</Typography>
-      {!!icon && <FontAwesomeIcon icon={icon} style={styles.icon} size={48}/>}
+      {!!icon && <FontAwesomeIcon icon={icon} style={styles.icon} size={35}/>}
     </TouchableOpacity>
   );
 };

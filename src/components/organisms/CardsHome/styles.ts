@@ -12,4 +12,7 @@ export const styles = StyleSheet.create({
       paddingHorizontal: 0,
       marginTop: 12,
     },
+    cards:{
+      marginTop: 0
+    }
   });

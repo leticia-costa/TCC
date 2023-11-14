@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useId, useRef, useState } from "react";
 import { View, TextInput } from "react-native";
 import Input from "../../atoms/Input";
 import Typography from "../../atoms/Typography";
@@ -7,18 +7,34 @@ import {
   faHeartCirclePlus,
   faStethoscope,
 } from "@fortawesome/free-solid-svg-icons";
-import colors from "../../../utils/colors";
 import Button from "../../atoms/Button";
 import { styles } from "./styles";
+import handleAlertPreassure from "../../../utils/handleAlertPreassure";
+import postBloodPreassure from "../../../../mocks/BloodPressure/postBloodPreassure";
+import { BloodPreassure } from "../../../../interfaces/bloodPreassure";
+import preassureLevel from "../../../utils/preassureLevel";
 
 const BloodPressureInput = () => {
   const [systolic, setSystolic] = useState("");
-  const [diastolic, setDiastolic] = useState("");
-  const diastolicRef = useRef<TextInput | null>(null);
+  const [dystolic, setDystolic] = useState("");
+  const dystolicRef = useRef<TextInput | null>(null);
+  const bloodPreassureId = useId();
 
   const handleAddPression = () => {
-    if (systolic && diastolicRef.current) {
-      console.log(`Pressão Arterial: ${systolic}/${diastolic}`);
+    if (systolic && dystolic) {
+      const level = preassureLevel(Number(systolic), Number(dystolic));
+      handleAlertPreassure(level);
+      const newData: BloodPreassure = {
+        id: bloodPreassureId,
+        patientId: 1,
+        date: new Date(),
+        systolicPressure: Number(systolic),
+        dystolicPressure: Number(dystolic),
+        pressureLevel: level,
+      };
+      postBloodPreassure(newData);
+      setDystolic("");
+      setSystolic("");
     } else {
       alert("Por favor, preencha ambos os valores.");
     }
@@ -35,24 +51,27 @@ const BloodPressureInput = () => {
 
       <View style={styles.inputContainer}>
         <Input
+          value={systolic}
+          onChangeText={(value) => setSystolic(value)}
           style={styles.input}
           placeholder="Ex: 12"
+          returnKeyType="next"
           type="numeric"
-          value={systolic}
-          onChangeText={(text) => setSystolic(text)}
-          onSubmitEditing={() => diastolicRef.current?.focus()}
+          onSubmitEditing={() => dystolicRef.current?.focus()}
         />
         <Typography variant="subheading" style={styles.separator}>
           {" "}
           /{" "}
         </Typography>
         <Input
+          id={"dystolicInput"}
+          value={dystolic}
+          onChangeText={(text) => setDystolic(text)}
+          ref={dystolicRef}
           style={styles.input}
-          ref={diastolicRef}
           placeholder="Ex: 8"
           type="numeric"
-          value={diastolic}
-          onChangeText={(text) => setDiastolic(text)}
+          returnKeyType="done" 
         />
       </View>
       <Button

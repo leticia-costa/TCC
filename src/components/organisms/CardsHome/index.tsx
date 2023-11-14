@@ -27,7 +27,7 @@ const CardsHome: React.FC = () => {
       label: "Medicação",
       theme: "dark",
       fullWidth: false,
-      onPress: () => navigation.navigate("Login", { name: "a" }),
+      onPress: () => navigation.navigate("Medicines"),
     },
   ];
   const cardfullWidthOptions: CardProps[] = [
@@ -36,11 +36,11 @@ const CardsHome: React.FC = () => {
       label: "Recomendações",
       theme: "medium",
       fullWidth: true,
-      onPress: () => navigation.navigate("Login", { name: "a" }),
+      onPress: () => navigation.navigate("Recommendations"),
     },
     {
       icon: faClock,
-      label: "Smart watch",
+      label: "Dispositivos vestiveis",
       theme: "disabled",
       fullWidth: true,
       disabled: true,
@@ -62,7 +62,7 @@ const CardsHome: React.FC = () => {
       </View>
 
       {cardfullWidthOptions.map((option) => (
-        <View style={styles.container}>
+        <View style={[styles.container, styles.cards]}>
           <Card
             icon={option.icon}
             label={option.label}

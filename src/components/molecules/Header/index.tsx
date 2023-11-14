@@ -12,6 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import { propStack } from "../../../routes/Stack/Models";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 interface HeaderProps {
   style?: StyleProp<TextStyle>;
@@ -19,6 +20,7 @@ interface HeaderProps {
   variant?: "default" | "dark" | "light";
   size?: "small" | "medium" | "big";
   goBack?: boolean;
+  icon?: IconProp;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -27,6 +29,7 @@ const Header: React.FC<HeaderProps> = ({
   size = "medium",
   variant = "default",
   goBack,
+  icon,
 }) => {
   const navigation = useNavigation<propStack>();
 
@@ -53,6 +56,7 @@ const Header: React.FC<HeaderProps> = ({
         <Typography style={themeStyles} variant="subheading">
           {text}
         </Typography>
+        {icon && <FontAwesomeIcon icon={icon} size={35} style={themeStyles} />}
       </View>
     </View>
   );

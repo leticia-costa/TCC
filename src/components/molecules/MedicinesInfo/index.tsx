@@ -33,7 +33,6 @@ const MedicinesInfo: React.FC<MedicinesInfoProps> = ({
           </Typography>
         </View>
         <View style={styles.divisor} />
-
         {medicines.map((item) => (
           <>
             <Typography style={styles.medicinesText}>
@@ -46,7 +45,6 @@ const MedicinesInfo: React.FC<MedicinesInfoProps> = ({
             <View style={styles.divisor} />
           </>
         ))}
-
         {high && (
           <Button
             style={styles.medicines}

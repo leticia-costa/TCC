@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleProp,
   TextStyle,
@@ -14,38 +14,66 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCheckCircle, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Input from "../../atoms/Input";
 import DatePicker from "react-native-date-picker";
+import * as Notifications from "expo-notifications";
 
+import Button from "../../atoms/Button";
+import handleNotification, {
+  Notification,
+} from "../../../utils/handleNotification";
 interface ReminderTimeProps {
   edit: boolean;
   description: string;
+  body: string;
+  title: string;
   hour: string;
+  status: boolean;
 }
 
 const ReminderTime: React.FC<ReminderTimeProps> = ({
   edit,
+  title,
   description,
   hour,
+  body,
+  status,
 }) => {
-  // const [showTimePicker, setShowTimePicker] = useState(false);
-  // const [selectedTime, setSelectedTime] = useState(new Date());
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(status);
 
-  // const onTimeChange = (event, selected) => {
-  //   if (selected) {
-  //     setSelectedTime(selected);
-  //     setShowTimePicker(Platform.OS === "ios");
-  //   }
-  // };
+  useEffect(() => {
+    (async () => {
+      const { status } = await Notifications.getPermissionsAsync();
+      if (status !== "granted") {
+        const { status } = await Notifications.requestPermissionsAsync();
+        if (status !== "granted") {
+          alert("Permissão para notificações não concedida!");
+          return;
+        }
+      }
 
-  // const setToNoon = () => {
-  //   const noon = new Date();
-  //   noon.setHours(12);
-  //   noon.setMinutes(0);
-  //   setSelectedTime(noon);
-  //   setShowTimePicker(Platform.OS === "ios");
-  // };
+      const tokenData = await Notifications.getExpoPushTokenAsync();
+      const expoPushToken = tokenData.data;
+    })();
+  }, []);
+
+  const partes = hour.split(":");
+
+  const hourFormated = parseInt(partes[0], 10);
+  const minutesFormated = parseInt(partes[1], 10);
+
+  const notificationAtributes: Notification = {
+    title: title,
+    body: body,
+    hour: hourFormated,
+    minute: minutesFormated,
+  };
+
+  useEffect(() => {
+    if (isEnabled) {
+      handleNotification(notificationAtributes);
+    }
+  }, []);
 
   return (
     <View style={styles.times}>

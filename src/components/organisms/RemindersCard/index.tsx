@@ -29,6 +29,7 @@ const RemindersCard: React.FC<RemindersCardProps> = ({ style }) => {
     .map((reminderPreassure) => ({
       description: reminderPreassure.description,
       hour: reminderPreassure.hour,
+      status: reminderPreassure.status
     }));
 
   const medicineRecominders = reminders
@@ -36,6 +37,7 @@ const RemindersCard: React.FC<RemindersCardProps> = ({ style }) => {
     .map((reminderMedicine) => ({
       description: reminderMedicine.description,
       hour: reminderMedicine.hour,
+      status: reminderMedicine.status
     }));
 
   return (
@@ -69,9 +71,12 @@ const RemindersCard: React.FC<RemindersCardProps> = ({ style }) => {
 
             {medicineRecominders.map((reminder) => (
               <ReminderTime
+                title={'Medicação'}
+                body={`Tome seu ${reminder.description}. Não se esqueça de cuidar de você! É hora de tomar sua medicação. Sua saúde agradece!`}
                 description={reminder.description}
                 hour={reminder.hour}
                 edit={edit}
+                status={reminder.status}
               />
             ))}
           </View>
@@ -85,9 +90,12 @@ const RemindersCard: React.FC<RemindersCardProps> = ({ style }) => {
 
             {preassureRecominders.map((reminder) => (
               <ReminderTime
+                title={'Monitorar pessão'}
+                body={'Lembre-se de cuidar do seu coração! Tire alguns minutos para monitorar sua pressão arterial hoje. Sua saúde merece toda atenção. É fácil, rápido e faz toda a diferença!'}
                 description={reminder.description}
                 hour={reminder.hour}
                 edit={edit}
+                status={reminder.status}
               />
             ))}
           </View>

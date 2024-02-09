@@ -1,0 +1,93 @@
+import { StyleSheet } from "react-native";
+import colors from "../../../utils/colors";
+
+export const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    width: "100%",
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: colors.white,
+    padding: 12,
+    paddingTop: 24,
+    marginBottom: 16,
+  },
+  titleDiv: {
+    maxWidth: 320,
+    minWidth: 280,
+    display: "flex",
+    flexDirection: "row",
+    borderWidth: 1,
+    borderRadius: 15,
+    padding: 8,
+    gap: 8,
+    alignItems: "center",
+    marginTop: -12,
+    backgroundColor: colors.white,
+    flex: 1,
+  },
+  title: {
+    display: "flex",
+    fontWeight: "500",
+  },
+  divisor: {
+    flex: 1,
+    borderTopWidth: 1,
+    borderRadius: 15,
+    borderColor: colors.dark,
+  },
+  card: {
+    display: "flex",
+    width: "100%",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    paddingTop: 0,
+    paddingHorizontal: 0,
+    paddingBottom: 16,
+    gap: 24,
+    borderWidth: 1,
+    borderRadius: 15,
+    borderColor: colors.dark,
+    elevation: 5,
+    shadowColor: colors.black,
+    backgroundColor: colors.white,
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+  },
+  description: {
+    textAlign: "left",
+    margin: 8,
+    marginTop: 0,
+    marginHorizontal: 12,
+    marginBottom: 0,
+  },
+  medicines: {
+    display: "flex",
+    flexDirection: "row",
+    marginTop: 0,
+    marginHorizontal: 8,
+    marginBottom: 16,
+  },
+  medicinesText: {
+    fontWeight: "500",
+    margin: 8,
+    marginBottom: 0,
+  },
+  critical: {
+    color: colors.black,
+    borderColor: colors.black,
+  },
+  high: {
+    color: colors.darkest,
+    borderColor: colors.darkest,
+  },
+  normal: {
+    color: colors.green,
+    borderColor: colors.green,
+  },
+  low: {
+    color: colors.purple,
+    borderColor: colors.purple,
+  },
+});
